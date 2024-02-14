@@ -1,9 +1,24 @@
 # serializers.py
-
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from .models import CustomUser, Product, Order
+
+class MerchantUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'password', 'username', 'is_merchant']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password'],
+            is_merchant=True
+        )
+        return user
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

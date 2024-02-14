@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import UserSerializer, LoginSerializer, ProductSerializer, OrderSerializer
+from .serializers import UserSerializer, LoginSerializer, ProductSerializer, OrderSerializer, MerchantUserSerializer
 from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
@@ -12,13 +12,22 @@ from rest_framework import status
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework as filters
 from rest_framework import filters
-from .permissions import IsAdminUserorReadOnly
+from .permissions import IsAdminUserorReadOnly, IsMerchantUser
 
 
 # Create your views here.
 class RegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MerchantRegisterView(APIView):
+    def post(self, request):
+        serializer = MerchantUserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -49,7 +58,7 @@ class ProductCreateView(CreateAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAdminUserorReadOnly]
+    permission_classes = [IsMerchantUser]
 
 
     def perform_create(self, serializer):
@@ -132,7 +141,7 @@ class ProductUpdateView(UpdateAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAdminUserorReadOnly]
+    permission_classes = [IsMerchantUser]
 
     def perform_update(self, serializer):
         """
@@ -159,7 +168,7 @@ class ProductDeleteView(DestroyAPIView):
     """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAdminUserorReadOnly]
+    permission_classes = [IsMerchantUser]
 
     def perform_destroy(self, instance):
         """

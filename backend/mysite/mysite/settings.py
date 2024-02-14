@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'curios',
     'rest_framework',
     'django_filters',
+    'drf_yasg'
 
 ]
 
