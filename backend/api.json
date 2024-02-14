@@ -17,7 +17,7 @@
       }
       {
         "url": "https://njorogekimenyu.pythonanywhere.com/api/curios/detail/<int:pk>/",
-        "view": "ProductDetailView.as_view()",
+        "params" "id",
         "name": "list-product"
       }
      
