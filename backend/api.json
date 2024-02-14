@@ -1,0 +1,26 @@
+{
+    "paths": [
+      {
+        "url": "https://njorogekimenyu.pythonanywhere.com/api/accounts/register/",
+        "params": "username, email, password",
+        "name": "register"
+      },
+      {
+        "url": "https://njorogekimenyu.pythonanywhere.com/api/accounts/login/",
+        "params": "email, password",
+        "name": "login"
+      },
+      {
+        "url": "https://njorogekimenyu.pythonanywhere.com/api/curios/list/",
+        "view": "ProductListView.as_view()",
+        "name": "list-product"
+      }
+      {
+        "url": "https://njorogekimenyu.pythonanywhere.com/api/curios/detail/<int:pk>/",
+        "view": "ProductDetailView.as_view()",
+        "name": "list-product"
+      }
+     
+    ]
+  }
+  
