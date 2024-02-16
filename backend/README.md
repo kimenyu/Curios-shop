@@ -48,3 +48,6 @@ Identified potential challenges or risks were addressed, including strategies to
 
 ### Repository Link
 [Link to Repository](https://github.com/kimenyu/Curios-shop.git)
+
+###Entity Relationship
+[Link to entity relationship](https://drawsql.app/teams/house-2/diagrams/tch)
