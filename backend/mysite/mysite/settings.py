@@ -43,11 +43,13 @@ INSTALLED_APPS = [
     'curios',
     'rest_framework',
     'django_filters',
-    'drf_yasg'
+    'drf_yasg',
+    'corsheaders',
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,7 +59,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOWED_ORIGINS = [
+    'https://curio-shop.vercel.app/',
+]
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
