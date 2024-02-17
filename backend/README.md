@@ -5,7 +5,7 @@ This prototype submission demonstrates the development of an e-commerce web appl
 
 ### Project Details
 - **Project Title:** E-commerce Site Development Prototype
-- **Submission Date:** [Date of Submission]
+- **Submission Date:** [17/2/2024]
 
 ## Task 1: Frontend Development
 The frontend was developed using the React.js framework to create a customer-facing interface for browsing artifacts and curios. Key functionalities implemented include:
